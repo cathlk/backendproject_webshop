@@ -1,15 +1,15 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace firstTry.Models
 {
-    public class OrderRow
+    public class Color
     {
         public int Id { get; set; }
-        public int SurfBoardId { get; set; }
+        public string Name { get; set; }
+        public int SurfboardId { get; set; }
         [JsonIgnore]
         public Surfboard Surfboard { get; set; }
-        public int OrderId { get; set; }
-        [JsonIgnore]
-        public Order Order { get; set; }
+
     }
 }

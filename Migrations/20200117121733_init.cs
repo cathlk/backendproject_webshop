@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace firstTry.Migrations
 {
-    public partial class Initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,9 +28,7 @@ namespace firstTry.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: true),
-                    Color = table.Column<string>(nullable: true),
-                    Price = table.Column<int>(nullable: false)
+                    Shape = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -53,6 +51,26 @@ namespace firstTry.Migrations
                         name: "FK_Orders_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Colors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true),
+                    SurfboardId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Colors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Colors_Surfboards_SurfboardId",
+                        column: x => x.SurfboardId,
+                        principalTable: "Surfboards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -85,8 +103,43 @@ namespace firstTry.Migrations
 
             migrationBuilder.InsertData(
                 table: "Surfboards",
-                columns: new[] { "Id", "Color", "Name", "Price" },
-                values: new object[] { 1, "Green", "Fish", 555 });
+                columns: new[] { "Id", "Shape" },
+                values: new object[] { 1, "Gun" });
+
+            migrationBuilder.InsertData(
+                table: "Surfboards",
+                columns: new[] { "Id", "Shape" },
+                values: new object[] { 2, "Fish" });
+
+            migrationBuilder.InsertData(
+                table: "Surfboards",
+                columns: new[] { "Id", "Shape" },
+                values: new object[] { 3, "Shortboard" });
+
+            migrationBuilder.InsertData(
+                table: "Surfboards",
+                columns: new[] { "Id", "Shape" },
+                values: new object[] { 4, "Longboard" });
+
+            migrationBuilder.InsertData(
+                table: "Colors",
+                columns: new[] { "Id", "Name", "SurfboardId" },
+                values: new object[] { 2, "Grey", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Colors",
+                columns: new[] { "Id", "Name", "SurfboardId" },
+                values: new object[] { 3, "Black", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Colors",
+                columns: new[] { "Id", "Name", "SurfboardId" },
+                values: new object[] { 1, "Pink", 3 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Colors_SurfboardId",
+                table: "Colors",
+                column: "SurfboardId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderRows_OrderId",
@@ -106,6 +159,9 @@ namespace firstTry.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Colors");
+
             migrationBuilder.DropTable(
                 name: "OrderRows");
 

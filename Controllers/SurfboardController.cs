@@ -21,12 +21,31 @@ namespace firstTry.Controllers
             _logger = logger;
         }
         [HttpGet]
-        public IEnumerable<Surfboard> Get()
+        public ActionResult<List<Surfboard>> Get()
         {
             using (SurfboardContext context = new SurfboardContext())
             {
-                return context.Surfboards.ToList();
+                List<Surfboard> Surfboards = context.Surfboards.Include(s => s.Colors).ToList();
+                return Ok(Surfboards);
             }
         }
+        [HttpPost]
+        public IActionResult Post([FromBody] Surfboard newSurfboard)
+        {
+            using (SurfboardContext context = new SurfboardContext())
+            {
+                context.Surfboards.Add(newSurfboard);
+                context.SaveChanges();
+            }
+            return Created("/surfboards", newSurfboard);
+        }
+
+        // [HttpPut("{id}")]
+        // public IActionResult;
+
+        // [HttpDelete("{id}")]
+        // public IActionResult;
+
+
     }
 }

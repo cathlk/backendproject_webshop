@@ -16,6 +16,45 @@ namespace firstTry.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.1");
 
+            modelBuilder.Entity("firstTry.Models.Color", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("SurfboardId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SurfboardId");
+
+                    b.ToTable("Colors");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Pink",
+                            SurfboardId = 3
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Grey",
+                            SurfboardId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Black",
+                            SurfboardId = 2
+                        });
+                });
+
             modelBuilder.Entity("firstTry.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
@@ -82,14 +121,8 @@ namespace firstTry.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Color")
+                    b.Property<string>("Shape")
                         .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -99,10 +132,32 @@ namespace firstTry.Migrations
                         new
                         {
                             Id = 1,
-                            Color = "Green",
-                            Name = "Fish",
-                            Price = 555
+                            Shape = "Gun"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Shape = "Fish"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Shape = "Shortboard"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Shape = "Longboard"
                         });
+                });
+
+            modelBuilder.Entity("firstTry.Models.Color", b =>
+                {
+                    b.HasOne("firstTry.Models.Surfboard", "Surfboard")
+                        .WithMany("Colors")
+                        .HasForeignKey("SurfboardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("firstTry.Models.Order", b =>
@@ -122,8 +177,8 @@ namespace firstTry.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("firstTry.Models.Surfboard", "Surfboards")
-                        .WithMany()
+                    b.HasOne("firstTry.Models.Surfboard", "Surfboard")
+                        .WithMany("OrderRows")
                         .HasForeignKey("SurfBoardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

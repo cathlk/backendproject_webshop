@@ -10,6 +10,7 @@ namespace firstTry.Contexts
         public DbSet<Order> Orders { get; set; } // Tabellen Orders
         public DbSet<OrderRow> OrderRows { get; set; } // Tabellen OrderRows
         public DbSet<Customer> Customers { get; set; } // Tabellen Customers 
+        public DbSet<Color> Colors { get; set; } //Tabellen Colors
 
         //För att berätta för Entity Framework var någonstans en databas skall skapas upp samt vilken teknik som skall användas använder vi metoden OnConfiguring:
         protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -17,28 +18,52 @@ namespace firstTry.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Surfboard  
+            //Surfboards
             modelBuilder.Entity<Surfboard>().HasData(new Surfboard
             {
                 Id = 1,
-                Name = "Fish",
-                Color = "Green",
-                Price = 2555,
+                Shape = "Gun",
+
             });
             modelBuilder.Entity<Surfboard>().HasData(new Surfboard
             {
                 Id = 2,
-                Name = "Longboard",
-                Color = "Black",
-                Price = 5555,
+                Shape = "Fish"
             });
             modelBuilder.Entity<Surfboard>().HasData(new Surfboard
             {
                 Id = 3,
-                Name = "Shortboard",
-                Color = "Pink",
-                Price = 5155,
+                Shape = "Shortboard"
+
             });
+            modelBuilder.Entity<Surfboard>().HasData(new Surfboard
+            {
+                Id = 4,
+                Shape = "Longboard"
+
+            });
+
+            //Colors
+            modelBuilder.Entity<Color>().HasData(new Color
+            {
+                Id = 1,
+                Name = "Pink",
+                SurfboardId = 3
+            });
+            modelBuilder.Entity<Color>().HasData(new Color
+            {
+                Id = 2,
+                Name = "Grey",
+                SurfboardId = 2
+            });
+            modelBuilder.Entity<Color>().HasData(new Color
+            {
+                Id = 3,
+                Name = "Black",
+                SurfboardId = 2
+
+            });
+
         }
     }
 }
