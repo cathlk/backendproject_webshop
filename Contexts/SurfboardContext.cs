@@ -1,3 +1,4 @@
+using System;
 using firstTry.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -63,6 +64,33 @@ namespace firstTry.Contexts
                 SurfboardId = 2
 
             });
+
+            //OrderRows
+            // modelBuilder.Entity<Color>().HasData(new Color
+            // {
+            //     Id = 1,
+            //     Name = "Pink",
+            //     SurfboardId = 3
+            // });
+
+            //Costumers
+            modelBuilder.Entity<Customer>().HasData(new Customer
+            {
+                Id = 1,
+                FirstName = "Lorem",
+                LastName = "Dolor",
+                Address = "Ipsum 33"
+            });
+
+            //Orders
+            modelBuilder.Entity<Order>().HasData(new Order
+            {
+                Id = 1,
+                OrderDate = DateTime.Now.AddDays(-20),
+                CustomerId = 1,
+            });
+
+
 
         }
     }

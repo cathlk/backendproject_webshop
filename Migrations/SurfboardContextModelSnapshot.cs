@@ -100,6 +100,9 @@ namespace firstTry.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("ColorId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("INTEGER");
 
@@ -107,6 +110,8 @@ namespace firstTry.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ColorId");
 
                     b.HasIndex("OrderId");
 
@@ -171,6 +176,12 @@ namespace firstTry.Migrations
 
             modelBuilder.Entity("firstTry.Models.OrderRow", b =>
                 {
+                    b.HasOne("firstTry.Models.Color", "Color")
+                        .WithMany()
+                        .HasForeignKey("ColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("firstTry.Models.Order", "Order")
                         .WithMany("OrderRows")
                         .HasForeignKey("OrderId")

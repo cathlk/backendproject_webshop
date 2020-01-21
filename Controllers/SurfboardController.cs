@@ -40,11 +40,31 @@ namespace firstTry.Controllers
             return Created("/surfboards", newSurfboard);
         }
 
-        // [HttpPut("{id}")]
-        // public IActionResult;
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Surfboard s)
+        {
+            using (SurfboardContext context = new SurfboardContext())
+            {
+                Surfboard toUpdate = context.Surfboards.First(s => s.Id == id);
+                toUpdate.Shape = s.Shape;
 
-        // [HttpDelete("{id}")]
-        // public IActionResult;
+                context.SaveChanges();
+            }
+            return Ok();
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            using (SurfboardContext context = new SurfboardContext())
+            {
+                Surfboard toDelete = context.Surfboards.First(s => s.Id == id);
+                context.Surfboards.Remove(toDelete);
+                context.SaveChanges();
+            }
+            return Ok();
+        }
 
 
     }

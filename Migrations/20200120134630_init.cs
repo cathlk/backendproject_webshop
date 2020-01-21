@@ -82,11 +82,18 @@ namespace firstTry.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     SurfBoardId = table.Column<int>(nullable: false),
+                    ColorId = table.Column<int>(nullable: false),
                     OrderId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderRows", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderRows_Colors_ColorId",
+                        column: x => x.ColorId,
+                        principalTable: "Colors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderRows_Orders_OrderId",
                         column: x => x.OrderId,
@@ -142,6 +149,11 @@ namespace firstTry.Migrations
                 column: "SurfboardId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderRows_ColorId",
+                table: "OrderRows",
+                column: "ColorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderRows_OrderId",
                 table: "OrderRows",
                 column: "OrderId");
@@ -160,10 +172,10 @@ namespace firstTry.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Colors");
+                name: "OrderRows");
 
             migrationBuilder.DropTable(
-                name: "OrderRows");
+                name: "Colors");
 
             migrationBuilder.DropTable(
                 name: "Orders");

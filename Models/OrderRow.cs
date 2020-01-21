@@ -8,8 +8,11 @@ namespace firstTry.Models
         public int SurfBoardId { get; set; }
         [JsonIgnore]
         public Surfboard Surfboard { get; set; }
-        public int OrderId { get; set; }
+        public int ColorId { get; set; }
         [JsonIgnore]
-        public Order Order { get; set; }
+        public Color Color { get; set; }
+        // public int OrderId { get; set; }
+        // [JsonIgnore]
+        // public Order Order { get; set; }
     }
 }
