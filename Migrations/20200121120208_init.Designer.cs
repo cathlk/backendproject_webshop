@@ -9,7 +9,7 @@ using firstTry.Contexts;
 namespace firstTry.Migrations
 {
     [DbContext(typeof(SurfboardContext))]
-    [Migration("20200120134630_init")]
+    [Migration("20200121120208_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,12 +27,7 @@ namespace firstTry.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SurfboardId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("SurfboardId");
 
                     b.ToTable("Colors");
 
@@ -40,20 +35,17 @@ namespace firstTry.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Pink",
-                            SurfboardId = 3
+                            Name = "Pink"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Grey",
-                            SurfboardId = 2
+                            Name = "Grey"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Black",
-                            SurfboardId = 2
+                            Name = "Black"
                         });
                 });
 
@@ -75,6 +67,29 @@ namespace firstTry.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Bells Beach, Victoria",
+                            FirstName = "Tyler",
+                            LastName = "Wright"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "Saquarema, Rio",
+                            FirstName = "Silvana",
+                            LastName = "Lima"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "Honolua Bay, Maui",
+                            FirstName = "Mason",
+                            LastName = "Ho"
+                        });
                 });
 
             modelBuilder.Entity("firstTry.Models.Order", b =>
@@ -94,6 +109,26 @@ namespace firstTry.Migrations
                     b.HasIndex("CustomerId");
 
                     b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CustomerId = 2,
+                            OrderDate = new DateTime(2020, 1, 1, 13, 2, 7, 974, DateTimeKind.Local).AddTicks(3220)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CustomerId = 1,
+                            OrderDate = new DateTime(2020, 1, 11, 13, 2, 7, 985, DateTimeKind.Local).AddTicks(8260)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CustomerId = 3,
+                            OrderDate = new DateTime(2020, 1, 17, 13, 2, 7, 985, DateTimeKind.Local).AddTicks(8360)
+                        });
                 });
 
             modelBuilder.Entity("firstTry.Models.OrderRow", b =>
@@ -120,12 +155,52 @@ namespace firstTry.Migrations
                     b.HasIndex("SurfBoardId");
 
                     b.ToTable("OrderRows");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ColorId = 1,
+                            OrderId = 1,
+                            SurfBoardId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ColorId = 3,
+                            OrderId = 1,
+                            SurfBoardId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ColorId = 1,
+                            OrderId = 1,
+                            SurfBoardId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ColorId = 2,
+                            OrderId = 2,
+                            SurfBoardId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ColorId = 3,
+                            OrderId = 3,
+                            SurfBoardId = 3
+                        });
                 });
 
             modelBuilder.Entity("firstTry.Models.Surfboard", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Price")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Shape")
@@ -139,32 +214,27 @@ namespace firstTry.Migrations
                         new
                         {
                             Id = 1,
+                            Price = 2345,
                             Shape = "Gun"
                         },
                         new
                         {
                             Id = 2,
+                            Price = 4325,
                             Shape = "Fish"
                         },
                         new
                         {
                             Id = 3,
+                            Price = 2222,
                             Shape = "Shortboard"
                         },
                         new
                         {
                             Id = 4,
+                            Price = 11403,
                             Shape = "Longboard"
                         });
-                });
-
-            modelBuilder.Entity("firstTry.Models.Color", b =>
-                {
-                    b.HasOne("firstTry.Models.Surfboard", "Surfboard")
-                        .WithMany("Colors")
-                        .HasForeignKey("SurfboardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("firstTry.Models.Order", b =>
@@ -179,7 +249,7 @@ namespace firstTry.Migrations
             modelBuilder.Entity("firstTry.Models.OrderRow", b =>
                 {
                     b.HasOne("firstTry.Models.Color", "Color")
-                        .WithMany()
+                        .WithMany("OrderRows")
                         .HasForeignKey("ColorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

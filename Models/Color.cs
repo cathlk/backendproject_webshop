@@ -7,9 +7,7 @@ namespace firstTry.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int SurfboardId { get; set; }
         [JsonIgnore]
-        public Surfboard Surfboard { get; set; }
-
+        public List<OrderRow> OrderRows { get; set; }
     }
 }

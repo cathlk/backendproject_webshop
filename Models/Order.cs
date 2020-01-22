@@ -9,7 +9,6 @@ namespace firstTry.Models
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public int CustomerId { get; set; }
-        [JsonIgnore]
         public Customer Customer { get; set; }
         public List<OrderRow> OrderRows { get; set; }
     }
