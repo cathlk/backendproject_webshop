@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace firstTry.Models
 {
-    public class Color
+    public class Size
     {
         public int Id { get; set; }
         public string Name { get; set; }

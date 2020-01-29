@@ -30,7 +30,7 @@ namespace firstTry.Controllers
                     .Include(or => or.OrderRows)
                         .ThenInclude(or => or.Surfboard)
                     .Include(or => or.OrderRows)
-                        .ThenInclude(or => or.Color)
+                        .ThenInclude(or => or.Size)
                     .ToList();
                 return Ok(Orders);
             }
@@ -46,7 +46,7 @@ namespace firstTry.Controllers
                     .Include(or => or.OrderRows)
                         .ThenInclude(or => or.Surfboard)
                     .Include(or => or.OrderRows)
-                        .ThenInclude(or => or.Color)
+                        .ThenInclude(or => or.Size)
                     .First(o => o.Id == id);
                 return Ok(Order);
             }

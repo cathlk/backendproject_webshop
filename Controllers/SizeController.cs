@@ -12,31 +12,31 @@ namespace firstTry.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ColorController : ControllerBase
+    public class SizeController : ControllerBase
     {
-        private readonly ILogger<ColorController> _logger;
+        private readonly ILogger<SizeController> _logger;
 
-        public ColorController(ILogger<ColorController> logger)
+        public SizeController(ILogger<SizeController> logger)
         {
             _logger = logger;
         }
         [HttpGet]
-        public ActionResult<List<Color>> Get()
+        public ActionResult<List<Size>> Get()
         {
             using (SurfboardContext context = new SurfboardContext())
             {
-                List<Color> Colors = context.Colors.ToList();
-                return Ok(Colors);
+                List<Size> Sizes = context.Sizes.ToList();
+                return Ok(Sizes);
             }
         }
 
         [HttpGet("{id}")]
-        public ActionResult<List<Color>> Get(int id)
+        public ActionResult<List<Size>> Get(int id)
         {
             using (SurfboardContext context = new SurfboardContext())
             {
-                Color Color = context.Colors.First(c => c.Id == id);
-                return Ok(Color);
+                Size Size = context.Sizes.First(c => c.Id == id);
+                return Ok(Size);
             }
         }
     }

@@ -16,37 +16,6 @@ namespace firstTry.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.1");
 
-            modelBuilder.Entity("firstTry.Models.Color", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Colors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Pink"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Grey"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Black"
-                        });
-                });
-
             modelBuilder.Entity("firstTry.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
@@ -113,19 +82,19 @@ namespace firstTry.Migrations
                         {
                             Id = 1,
                             CustomerId = 2,
-                            OrderDate = new DateTime(2020, 1, 1, 13, 6, 58, 57, DateTimeKind.Local).AddTicks(8840)
+                            OrderDate = new DateTime(2020, 1, 8, 13, 33, 9, 288, DateTimeKind.Local).AddTicks(410)
                         },
                         new
                         {
                             Id = 2,
                             CustomerId = 1,
-                            OrderDate = new DateTime(2020, 1, 11, 13, 6, 58, 69, DateTimeKind.Local).AddTicks(970)
+                            OrderDate = new DateTime(2020, 1, 18, 13, 33, 9, 301, DateTimeKind.Local).AddTicks(4180)
                         },
                         new
                         {
                             Id = 3,
                             CustomerId = 3,
-                            OrderDate = new DateTime(2020, 1, 17, 13, 6, 58, 69, DateTimeKind.Local).AddTicks(1050)
+                            OrderDate = new DateTime(2020, 1, 24, 13, 33, 9, 301, DateTimeKind.Local).AddTicks(4250)
                         });
                 });
 
@@ -135,10 +104,10 @@ namespace firstTry.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ColorId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int>("SizeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SurfBoardId")
@@ -146,9 +115,9 @@ namespace firstTry.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ColorId");
-
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("SizeId");
 
                     b.HasIndex("SurfBoardId");
 
@@ -158,37 +127,83 @@ namespace firstTry.Migrations
                         new
                         {
                             Id = 1,
-                            ColorId = 1,
                             OrderId = 1,
+                            SizeId = 1,
                             SurfBoardId = 2
                         },
                         new
                         {
                             Id = 2,
-                            ColorId = 3,
                             OrderId = 1,
+                            SizeId = 2,
                             SurfBoardId = 2
                         },
                         new
                         {
                             Id = 3,
-                            ColorId = 1,
                             OrderId = 1,
+                            SizeId = 3,
                             SurfBoardId = 3
                         },
                         new
                         {
                             Id = 4,
-                            ColorId = 2,
                             OrderId = 2,
+                            SizeId = 5,
                             SurfBoardId = 1
                         },
                         new
                         {
                             Id = 5,
-                            ColorId = 3,
                             OrderId = 3,
+                            SizeId = 4,
                             SurfBoardId = 3
+                        });
+                });
+
+            modelBuilder.Entity("firstTry.Models.Size", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sizes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "5'6"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "6'0"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "7'0"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "7'6"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "9'1"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "9'6"
                         });
                 });
 
@@ -197,6 +212,12 @@ namespace firstTry.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");
@@ -212,26 +233,26 @@ namespace firstTry.Migrations
                         new
                         {
                             Id = 1,
-                            Price = 2345,
-                            Shape = "Gun"
+                            Description = "Denna brädan handlar om glid och flow med möjlighet för surfaren att vandra på brädan för maximal “nose riding time”. Av denna anledning är denna brädan lång, bredd och otroligt stabil. Om du är på jakt efter en riktigt rolig longboard att surfa down the line med så är Retro ditt val.",
+                            ImageUrl = "https://shopcdn2.textalk.se/shop/26254/art54/h8795/22218795-origpic-567940.jpg?max-width=549&max-height=549&quality=85",
+                            Price = 11403,
+                            Shape = "Longboard"
                         },
                         new
                         {
                             Id = 2,
-                            Price = 4325,
-                            Shape = "Fish"
-                        },
-                        new
-                        {
-                            Id = 3,
+                            Description = "En shortboard med longboard outline i framdelen! Fånga vågor är enkelt med denna bräda och den flatta rockern ger dig bästa glid. Bottenkurvan med pintail (samt subtil rocker vid tailen) ser till att du behåller full kontroll och manövrerbarhet. Inte nog med detta, Lovechild erbjuder dessutom 3 olika fin set up möjligheter. Single-fin, 2+1 eller quad!",
+                            ImageUrl = "https://shopcdn2.textalk.se/shop/26254/art54/h7693/38987693-origpic-98a47a.jpg?max-width=549&max-height=549&quality=85",
                             Price = 2222,
                             Shape = "Shortboard"
                         },
                         new
                         {
-                            Id = 4,
-                            Price = 11403,
-                            Shape = "Longboard"
+                            Id = 3,
+                            Description = "Modern har blandat inslag av retrofish-shape från 70-talet tillsammans med en modern bottenstruktur samt med en quad-setup för att göra denna bräda till det optimala valet i små till medelstora vågor. Flow, smoothness och pure fun kännertecknar denna bräda.",
+                            ImageUrl = "https://shopcdn2.textalk.se/shop/26254/art54/h4090/156144090-origpic-f52a2b.jpg?max-width=549&max-height=549&quality=85",
+                            Price = 4325,
+                            Shape = "Hybrid"
                         });
                 });
 
@@ -246,15 +267,15 @@ namespace firstTry.Migrations
 
             modelBuilder.Entity("firstTry.Models.OrderRow", b =>
                 {
-                    b.HasOne("firstTry.Models.Color", "Color")
-                        .WithMany("OrderRows")
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("firstTry.Models.Order", "Order")
                         .WithMany("OrderRows")
                         .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("firstTry.Models.Size", "Size")
+                        .WithMany("OrderRows")
+                        .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
