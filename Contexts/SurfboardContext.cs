@@ -33,7 +33,7 @@ namespace firstTry.Contexts
             modelBuilder.Entity<Surfboard>().HasData(new Surfboard
             {
                 Id = 2,
-                Shape = "Shortboard",
+                Shape = "Hybrid",
                 ImageUrl = "https://shopcdn2.textalk.se/shop/26254/art54/h7693/38987693-origpic-98a47a.jpg?max-width=549&max-height=549&quality=85",
                 Description = "En shortboard med longboard outline i framdelen! Fånga vågor är enkelt med denna bräda och den flatta rockern ger dig bästa glid. Bottenkurvan med pintail (samt subtil rocker vid tailen) ser till att du behåller full kontroll och manövrerbarhet. Inte nog med detta, Lovechild erbjuder dessutom 3 olika fin set up möjligheter. Single-fin, 2+1 eller quad!",
                 Price = 2222
@@ -42,7 +42,7 @@ namespace firstTry.Contexts
             modelBuilder.Entity<Surfboard>().HasData(new Surfboard
             {
                 Id = 3,
-                Shape = "Hybrid",
+                Shape = "Fish",
                 ImageUrl = "https://shopcdn2.textalk.se/shop/26254/art54/h4090/156144090-origpic-f52a2b.jpg?max-width=549&max-height=549&quality=85",
                 Description = "Modern har blandat inslag av retrofish-shape från 70-talet tillsammans med en modern bottenstruktur samt med en quad-setup för att göra denna bräda till det optimala valet i små till medelstora vågor. Flow, smoothness och pure fun kännertecknar denna bräda.",
                 Price = 4325

@@ -71,6 +71,9 @@ namespace firstTry.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
@@ -82,19 +85,22 @@ namespace firstTry.Migrations
                         {
                             Id = 1,
                             CustomerId = 2,
-                            OrderDate = new DateTime(2020, 1, 8, 13, 33, 9, 288, DateTimeKind.Local).AddTicks(410)
+                            OrderDate = new DateTime(2020, 1, 16, 13, 49, 27, 261, DateTimeKind.Local).AddTicks(6250),
+                            Price = 0
                         },
                         new
                         {
                             Id = 2,
                             CustomerId = 1,
-                            OrderDate = new DateTime(2020, 1, 18, 13, 33, 9, 301, DateTimeKind.Local).AddTicks(4180)
+                            OrderDate = new DateTime(2020, 1, 26, 13, 49, 27, 273, DateTimeKind.Local).AddTicks(6880),
+                            Price = 0
                         },
                         new
                         {
                             Id = 3,
                             CustomerId = 3,
-                            OrderDate = new DateTime(2020, 1, 24, 13, 33, 9, 301, DateTimeKind.Local).AddTicks(4250)
+                            OrderDate = new DateTime(2020, 2, 1, 13, 49, 27, 273, DateTimeKind.Local).AddTicks(6970),
+                            Price = 0
                         });
                 });
 
@@ -104,7 +110,13 @@ namespace firstTry.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("OrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Price")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SizeId")
@@ -127,35 +139,45 @@ namespace firstTry.Migrations
                         new
                         {
                             Id = 1,
+                            Amount = 0,
                             OrderId = 1,
+                            Price = 0,
                             SizeId = 1,
                             SurfBoardId = 2
                         },
                         new
                         {
                             Id = 2,
+                            Amount = 0,
                             OrderId = 1,
+                            Price = 0,
                             SizeId = 2,
                             SurfBoardId = 2
                         },
                         new
                         {
                             Id = 3,
+                            Amount = 0,
                             OrderId = 1,
+                            Price = 0,
                             SizeId = 3,
                             SurfBoardId = 3
                         },
                         new
                         {
                             Id = 4,
+                            Amount = 0,
                             OrderId = 2,
+                            Price = 0,
                             SizeId = 5,
                             SurfBoardId = 1
                         },
                         new
                         {
                             Id = 5,
+                            Amount = 0,
                             OrderId = 3,
+                            Price = 0,
                             SizeId = 4,
                             SurfBoardId = 3
                         });
@@ -244,7 +266,7 @@ namespace firstTry.Migrations
                             Description = "En shortboard med longboard outline i framdelen! Fånga vågor är enkelt med denna bräda och den flatta rockern ger dig bästa glid. Bottenkurvan med pintail (samt subtil rocker vid tailen) ser till att du behåller full kontroll och manövrerbarhet. Inte nog med detta, Lovechild erbjuder dessutom 3 olika fin set up möjligheter. Single-fin, 2+1 eller quad!",
                             ImageUrl = "https://shopcdn2.textalk.se/shop/26254/art54/h7693/38987693-origpic-98a47a.jpg?max-width=549&max-height=549&quality=85",
                             Price = 2222,
-                            Shape = "Shortboard"
+                            Shape = "Hybrid"
                         },
                         new
                         {
@@ -252,7 +274,7 @@ namespace firstTry.Migrations
                             Description = "Modern har blandat inslag av retrofish-shape från 70-talet tillsammans med en modern bottenstruktur samt med en quad-setup för att göra denna bräda till det optimala valet i små till medelstora vågor. Flow, smoothness och pure fun kännertecknar denna bräda.",
                             ImageUrl = "https://shopcdn2.textalk.se/shop/26254/art54/h4090/156144090-origpic-f52a2b.jpg?max-width=549&max-height=549&quality=85",
                             Price = 4325,
-                            Shape = "Hybrid"
+                            Shape = "Fish"
                         });
                 });
 

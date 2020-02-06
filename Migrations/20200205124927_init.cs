@@ -58,7 +58,8 @@ namespace firstTry.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     OrderDate = table.Column<DateTime>(nullable: false),
-                    CustomerId = table.Column<int>(nullable: false)
+                    CustomerId = table.Column<int>(nullable: false),
+                    Price = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,7 +79,9 @@ namespace firstTry.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     SurfBoardId = table.Column<int>(nullable: false),
+                    Price = table.Column<int>(nullable: false),
                     SizeId = table.Column<int>(nullable: false),
+                    Amount = table.Column<int>(nullable: false),
                     OrderId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -157,52 +160,52 @@ namespace firstTry.Migrations
             migrationBuilder.InsertData(
                 table: "Surfboards",
                 columns: new[] { "Id", "Description", "ImageUrl", "Price", "Shape" },
-                values: new object[] { 2, "En shortboard med longboard outline i framdelen! Fånga vågor är enkelt med denna bräda och den flatta rockern ger dig bästa glid. Bottenkurvan med pintail (samt subtil rocker vid tailen) ser till att du behåller full kontroll och manövrerbarhet. Inte nog med detta, Lovechild erbjuder dessutom 3 olika fin set up möjligheter. Single-fin, 2+1 eller quad!", "https://shopcdn2.textalk.se/shop/26254/art54/h7693/38987693-origpic-98a47a.jpg?max-width=549&max-height=549&quality=85", 2222, "Shortboard" });
+                values: new object[] { 2, "En shortboard med longboard outline i framdelen! Fånga vågor är enkelt med denna bräda och den flatta rockern ger dig bästa glid. Bottenkurvan med pintail (samt subtil rocker vid tailen) ser till att du behåller full kontroll och manövrerbarhet. Inte nog med detta, Lovechild erbjuder dessutom 3 olika fin set up möjligheter. Single-fin, 2+1 eller quad!", "https://shopcdn2.textalk.se/shop/26254/art54/h7693/38987693-origpic-98a47a.jpg?max-width=549&max-height=549&quality=85", 2222, "Hybrid" });
 
             migrationBuilder.InsertData(
                 table: "Surfboards",
                 columns: new[] { "Id", "Description", "ImageUrl", "Price", "Shape" },
-                values: new object[] { 3, "Modern har blandat inslag av retrofish-shape från 70-talet tillsammans med en modern bottenstruktur samt med en quad-setup för att göra denna bräda till det optimala valet i små till medelstora vågor. Flow, smoothness och pure fun kännertecknar denna bräda.", "https://shopcdn2.textalk.se/shop/26254/art54/h4090/156144090-origpic-f52a2b.jpg?max-width=549&max-height=549&quality=85", 4325, "Hybrid" });
+                values: new object[] { 3, "Modern har blandat inslag av retrofish-shape från 70-talet tillsammans med en modern bottenstruktur samt med en quad-setup för att göra denna bräda till det optimala valet i små till medelstora vågor. Flow, smoothness och pure fun kännertecknar denna bräda.", "https://shopcdn2.textalk.se/shop/26254/art54/h4090/156144090-origpic-f52a2b.jpg?max-width=549&max-height=549&quality=85", 4325, "Fish" });
 
             migrationBuilder.InsertData(
                 table: "Orders",
-                columns: new[] { "Id", "CustomerId", "OrderDate" },
-                values: new object[] { 2, 1, new DateTime(2020, 1, 18, 13, 33, 9, 301, DateTimeKind.Local).AddTicks(4180) });
+                columns: new[] { "Id", "CustomerId", "OrderDate", "Price" },
+                values: new object[] { 2, 1, new DateTime(2020, 1, 26, 13, 49, 27, 273, DateTimeKind.Local).AddTicks(6880), 0 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
-                columns: new[] { "Id", "CustomerId", "OrderDate" },
-                values: new object[] { 1, 2, new DateTime(2020, 1, 8, 13, 33, 9, 288, DateTimeKind.Local).AddTicks(410) });
+                columns: new[] { "Id", "CustomerId", "OrderDate", "Price" },
+                values: new object[] { 1, 2, new DateTime(2020, 1, 16, 13, 49, 27, 261, DateTimeKind.Local).AddTicks(6250), 0 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
-                columns: new[] { "Id", "CustomerId", "OrderDate" },
-                values: new object[] { 3, 3, new DateTime(2020, 1, 24, 13, 33, 9, 301, DateTimeKind.Local).AddTicks(4250) });
+                columns: new[] { "Id", "CustomerId", "OrderDate", "Price" },
+                values: new object[] { 3, 3, new DateTime(2020, 2, 1, 13, 49, 27, 273, DateTimeKind.Local).AddTicks(6970), 0 });
 
             migrationBuilder.InsertData(
                 table: "OrderRows",
-                columns: new[] { "Id", "OrderId", "SizeId", "SurfBoardId" },
-                values: new object[] { 4, 2, 5, 1 });
+                columns: new[] { "Id", "Amount", "OrderId", "Price", "SizeId", "SurfBoardId" },
+                values: new object[] { 4, 0, 2, 0, 5, 1 });
 
             migrationBuilder.InsertData(
                 table: "OrderRows",
-                columns: new[] { "Id", "OrderId", "SizeId", "SurfBoardId" },
-                values: new object[] { 1, 1, 1, 2 });
+                columns: new[] { "Id", "Amount", "OrderId", "Price", "SizeId", "SurfBoardId" },
+                values: new object[] { 1, 0, 1, 0, 1, 2 });
 
             migrationBuilder.InsertData(
                 table: "OrderRows",
-                columns: new[] { "Id", "OrderId", "SizeId", "SurfBoardId" },
-                values: new object[] { 2, 1, 2, 2 });
+                columns: new[] { "Id", "Amount", "OrderId", "Price", "SizeId", "SurfBoardId" },
+                values: new object[] { 2, 0, 1, 0, 2, 2 });
 
             migrationBuilder.InsertData(
                 table: "OrderRows",
-                columns: new[] { "Id", "OrderId", "SizeId", "SurfBoardId" },
-                values: new object[] { 3, 1, 3, 3 });
+                columns: new[] { "Id", "Amount", "OrderId", "Price", "SizeId", "SurfBoardId" },
+                values: new object[] { 3, 0, 1, 0, 3, 3 });
 
             migrationBuilder.InsertData(
                 table: "OrderRows",
-                columns: new[] { "Id", "OrderId", "SizeId", "SurfBoardId" },
-                values: new object[] { 5, 3, 4, 3 });
+                columns: new[] { "Id", "Amount", "OrderId", "Price", "SizeId", "SurfBoardId" },
+                values: new object[] { 5, 0, 3, 0, 4, 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderRows_OrderId",

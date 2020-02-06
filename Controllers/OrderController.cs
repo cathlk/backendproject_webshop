@@ -53,17 +53,38 @@ namespace firstTry.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Order newOrder)
+        public IActionResult Post([FromBody] OrderViewModel newOrder)
         {
             using (SurfboardContext context = new SurfboardContext())
             {
+                Customer c = new Customer();
+                c.Address = newOrder.Customer.Address;
+                c.FirstName = newOrder.Customer.FirstName;
+                c.LastName = newOrder.Customer.LastName;
+
+                context.Customers.Add(c);
+                context.SaveChanges();
+
                 Order o = new Order();
                 o.OrderDate = DateTime.Now;
-                o.CustomerId = newOrder.CustomerId;
+                o.CustomerId = c.Id;
                 context.Orders.Add(o);
                 context.SaveChanges();
+
+                // Skapa orderrader!!!!
+                foreach (var item in newOrder.Cart)
+                {
+                    OrderRow or = new OrderRow();
+                    or.OrderId = o.Id;
+                    or.SurfBoardId = item.Id;
+                    or.Price = item.Price;
+                    or.SizeId = item.SizeId;
+                    context.OrderRows.Add(or);
+                    context.SaveChanges();
+                }
+                
+                return Created("/orders", o);
             }
-            return Created("/orders", newOrder);
         }
 
         [HttpDelete("{id}")]

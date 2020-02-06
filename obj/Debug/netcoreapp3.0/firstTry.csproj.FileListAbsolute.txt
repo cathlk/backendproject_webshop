@@ -60,3 +60,5 @@
 /Users/Catherine/Documents/Frontend_18-20/backend/webshop/firstTry/bin/Debug/netcoreapp3.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/Catherine/Documents/Frontend_18-20/backend/webshop/firstTry/bin/Debug/netcoreapp3.0/runtimes/win-x86/native/e_sqlite3.dll
 /Users/Catherine/Documents/Frontend_18-20/backend/webshop/firstTry/obj/Debug/netcoreapp3.0/firstTry.csproj.CopyComplete
+/Users/Catherine/Documents/Frontend_18-20/backend/webshop/firstTry/bin/Debug/netcoreapp3.0/AutoMapper.dll
+/Users/Catherine/Documents/Frontend_18-20/backend/webshop/firstTry/bin/Debug/netcoreapp3.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

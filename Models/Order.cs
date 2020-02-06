@@ -11,5 +11,6 @@ namespace firstTry.Models
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         public List<OrderRow> OrderRows { get; set; }
+        public int Price { get; set; }
     }
 }
