@@ -9,7 +9,7 @@ using firstTry.Contexts;
 namespace firstTry.Migrations
 {
     [DbContext(typeof(SurfboardContext))]
-    [Migration("20200205124927_init")]
+    [Migration("20200207114107_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,21 +87,21 @@ namespace firstTry.Migrations
                         {
                             Id = 1,
                             CustomerId = 2,
-                            OrderDate = new DateTime(2020, 1, 16, 13, 49, 27, 261, DateTimeKind.Local).AddTicks(6250),
+                            OrderDate = new DateTime(2020, 1, 18, 12, 41, 6, 783, DateTimeKind.Local).AddTicks(7120),
                             Price = 0
                         },
                         new
                         {
                             Id = 2,
                             CustomerId = 1,
-                            OrderDate = new DateTime(2020, 1, 26, 13, 49, 27, 273, DateTimeKind.Local).AddTicks(6880),
+                            OrderDate = new DateTime(2020, 1, 28, 12, 41, 6, 796, DateTimeKind.Local).AddTicks(2680),
                             Price = 0
                         },
                         new
                         {
                             Id = 3,
                             CustomerId = 3,
-                            OrderDate = new DateTime(2020, 2, 1, 13, 49, 27, 273, DateTimeKind.Local).AddTicks(6970),
+                            OrderDate = new DateTime(2020, 2, 3, 12, 41, 6, 796, DateTimeKind.Local).AddTicks(2770),
                             Price = 0
                         });
                 });

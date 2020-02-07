@@ -170,17 +170,17 @@ namespace firstTry.Migrations
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "CustomerId", "OrderDate", "Price" },
-                values: new object[] { 2, 1, new DateTime(2020, 1, 26, 13, 49, 27, 273, DateTimeKind.Local).AddTicks(6880), 0 });
+                values: new object[] { 2, 1, new DateTime(2020, 1, 28, 12, 41, 6, 796, DateTimeKind.Local).AddTicks(2680), 0 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "CustomerId", "OrderDate", "Price" },
-                values: new object[] { 1, 2, new DateTime(2020, 1, 16, 13, 49, 27, 261, DateTimeKind.Local).AddTicks(6250), 0 });
+                values: new object[] { 1, 2, new DateTime(2020, 1, 18, 12, 41, 6, 783, DateTimeKind.Local).AddTicks(7120), 0 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "CustomerId", "OrderDate", "Price" },
-                values: new object[] { 3, 3, new DateTime(2020, 2, 1, 13, 49, 27, 273, DateTimeKind.Local).AddTicks(6970), 0 });
+                values: new object[] { 3, 3, new DateTime(2020, 2, 3, 12, 41, 6, 796, DateTimeKind.Local).AddTicks(2770), 0 });
 
             migrationBuilder.InsertData(
                 table: "OrderRows",
